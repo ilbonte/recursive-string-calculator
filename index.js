@@ -3,7 +3,7 @@ module.exports = function stringCalculator (stringOfNumbers) {
     return parseInt(stringOfNumbers)
   }
   if (containsTwoNumbers(stringOfNumbers)) {
-    const [_, first, second, __] = stringOfNumbers.match(/^(\d+),(\d+)$/)
+    const [first, second] = stringOfNumbers.split(',').map(stringCalculator)
     return stringCalculator(first) + stringCalculator(second)
   }
   return 0

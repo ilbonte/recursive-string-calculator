@@ -1,10 +1,10 @@
-module.exports = stringOfNumbers => {
+module.exports = function stringCalculator (stringOfNumbers) {
   if (containsSingleNumber(stringOfNumbers)) {
     return parseInt(stringOfNumbers)
   }
   if (containsTwoNumbers(stringOfNumbers)) {
     const [_, first, second, __] = stringOfNumbers.match(/^(\d+),(\d+)$/)
-    return parseInt(first) + parseInt(second)
+    return stringCalculator(first) + stringCalculator(second)
   }
   return 0
 }

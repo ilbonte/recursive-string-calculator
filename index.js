@@ -1,3 +1,5 @@
+const delimiters = '[,\n]'
+
 module.exports = function stringCalculator (stringOfNumbers) {
   if (containsSingleNumber(stringOfNumbers)) {
     return parseInt(stringOfNumbers)
@@ -5,11 +7,11 @@ module.exports = function stringCalculator (stringOfNumbers) {
 
   if (containsUnknownAmountOfNumbers(stringOfNumbers)) {
     return stringOfNumbers
-    .split(',')
+    .split(new RegExp(delimiters))
     .map(stringCalculator)
     .reduce((acc, curr, arr) => acc + curr)
   }
-  
+
   return 0
 }
 
@@ -20,5 +22,7 @@ function containsSingleNumber (stringOfNumbers) {
 
 /* containsUnknownAmountOfNumbers :: string -> boolean */
 function containsUnknownAmountOfNumbers (stringOfNumbers) {
-  return /^(\d+)(,(\d+))+$/.test(stringOfNumbers)
+  const normalizedDelimiters = delimiters.replace('\\', '\\\\')
+  const matcher = new RegExp(`^(\\d+)(${normalizedDelimiters}(\\d+))+$`)
+  return matcher.test(stringOfNumbers)
 }

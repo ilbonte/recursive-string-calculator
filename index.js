@@ -2,10 +2,14 @@ module.exports = function stringCalculator (stringOfNumbers) {
   if (containsSingleNumber(stringOfNumbers)) {
     return parseInt(stringOfNumbers)
   }
-  if (containsTwoNumbers(stringOfNumbers)) {
-    const [first, second] = stringOfNumbers.split(',').map(stringCalculator)
-    return stringCalculator(first) + stringCalculator(second)
+
+  if (containsUnknownAmountOfNumbers(stringOfNumbers)) {
+    return stringOfNumbers
+    .split(',')
+    .map(stringCalculator)
+    .reduce((acc, curr, arr) => acc + curr)
   }
+  
   return 0
 }
 
@@ -14,7 +18,7 @@ function containsSingleNumber (stringOfNumbers) {
   return /^\d+$/.test(stringOfNumbers)
 }
 
-/* containsSingleNumber :: string -> boolean */
-function containsTwoNumbers (stringOfNumbers) {
-  return /^(\d+),(\d+)$/.test(stringOfNumbers)
+/* containsUnknownAmountOfNumbers :: string -> boolean */
+function containsUnknownAmountOfNumbers (stringOfNumbers) {
+  return /^(\d+)(,(\d+))+$/.test(stringOfNumbers)
 }

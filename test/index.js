@@ -15,4 +15,9 @@ test('string calculator', () => {
   test('string with two numbers returns their sum', () => {
     equal( stringCalculator("1,2"), 3)
   })
+
+  test('string with unknown amount of numbers returns their sum', () => {
+    equal( stringCalculator("1,2,3"), 6)
+    equal( stringCalculator("1,2,3,4,5,6,7,8"), 36)
+  })
 })

@@ -1,0 +1,15 @@
+{
+  "name": "string-christian",
+  "version": "1.0.0",
+  "description": "The following is a TDD Kata, an exercise in coding, refactoring and test-first, that you should apply daily for at least 15-30 minutes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "m.test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "m.test": "0.0.44"
+  }
+}

@@ -2,6 +2,7 @@ const delimiters = '[,\n]'
 
 exports.add = add
 
+/* add :: string -> number */
 function add (stringOfNumbers) {
   if (containsSingleNumber(stringOfNumbers)) {
     return parseInt(stringOfNumbers)

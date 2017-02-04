@@ -1,6 +1,8 @@
 const delimiters = '[,\n]'
 
-module.exports = function stringCalculator (stringOfNumbers) {
+exports.add = add
+
+function add (stringOfNumbers) {
   if (containsSingleNumber(stringOfNumbers)) {
     return parseInt(stringOfNumbers)
   }
@@ -8,7 +10,7 @@ module.exports = function stringCalculator (stringOfNumbers) {
   if (containsUnknownAmountOfNumbers(stringOfNumbers)) {
     return stringOfNumbers
     .split(new RegExp(delimiters))
-    .map(stringCalculator)
+    .map(add)
     .reduce((acc, curr, arr) => acc + curr)
   }
 

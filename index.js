@@ -1,4 +1,4 @@
-const delimiters = '[,\n]'
+const delimiters = [',', '\n']
 
 exports.add = add
 
@@ -10,7 +10,7 @@ function add (stringOfNumbers) {
 
   if (containsUnknownAmountOfNumbers(stringOfNumbers)) {
     return stringOfNumbers
-    .split(new RegExp(delimiters))
+    .split(new RegExp(toRegExp(delimiters)))
     .map(add)
     .reduce((acc, curr, arr) => acc + curr)
   }
@@ -25,7 +25,11 @@ function containsSingleNumber (stringOfNumbers) {
 
 /* containsUnknownAmountOfNumbers :: string -> boolean */
 function containsUnknownAmountOfNumbers (stringOfNumbers) {
-  const normalizedDelimiters = delimiters.replace('\\', '\\\\')
+  const normalizedDelimiters = toRegExp(delimiters).replace('\\', '\\\\')
   const matcher = new RegExp(`^(\\d+)(${normalizedDelimiters}(\\d+))+$`)
   return matcher.test(stringOfNumbers)
+}
+
+function toRegExp (characters) {
+  return `[${delimiters.join('')}]`
 }

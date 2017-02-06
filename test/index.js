@@ -26,4 +26,8 @@ test('string calculator', () => {
     equal(add('1\n2'), 3)
     equal(add('1\n2,3'), 6)
   })
+
+  test('handles custom delimiters', () => {
+    equal(add('//;\n1;2'), 3)
+  })
 })

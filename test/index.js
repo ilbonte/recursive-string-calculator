@@ -34,4 +34,8 @@ test('string calculator', () => {
   test('negative numbers cause exception', () =>{
     throws(add('-2,4,-1'),/negatives not allowed: -2,-1/)
   })
+
+  test('numbers bigger than 1000 are ignored', ()=>{
+    equal(add('2,1000'), 2)
+  })
 })

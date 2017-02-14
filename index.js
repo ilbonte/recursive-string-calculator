@@ -22,6 +22,7 @@ function add (stringOfNumbers) {
   if (containsUnknownAmountOfNumbers(stringOfNumbers)) {
     return stringOfNumbers
     .split(new RegExp(toCharacterSet(delimiters)))
+    .filter(numbesLowerThan(1000))    
     .map(add)
     .reduce((acc, curr, arr) => acc + curr)
   }
@@ -64,4 +65,8 @@ function containsNegativeNumbers (stringOfNumbers){
 /* extractNegativeNumbersFrom :: string -> string */
 function extractNegativeNumbersFrom(stringOfNumbers){
   return stringOfNumbers.match(/(-\d)/g).toString(',')
+}
+
+function numbesLowerThan(expected) {
+  return number => parseInt(number) < expected
 }

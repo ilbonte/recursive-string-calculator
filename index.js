@@ -10,6 +10,11 @@ function add (stringOfNumbers) {
     stringOfNumbers = stringOfNumbers.substring(4)
   }
 
+  if(containsNegativeNumbers(stringOfNumbers)){
+        const negatives = extractNegativeNumbersFrom(stringOfNumbers)
+        return () => {throw new Error(`negatives not allowed: ${negatives}`)}
+   }
+
   if (containsSingleNumber(stringOfNumbers)) {
     return parseInt(stringOfNumbers)
   }
@@ -49,4 +54,14 @@ function extractCustomDelimiterFrom (stringOfNumbers) {
 /* toCharacterSet :: array<string> -> string */
 function toCharacterSet (characters) {
   return `[${delimiters.join('')}]`
+}
+
+/* containsNegativeNumbers :: string -> boolean */
+function containsNegativeNumbers (stringOfNumbers){  
+  return /-\d*/.test(stringOfNumbers)
+}
+
+/* extractNegativeNumbersFrom :: string -> string */
+function extractNegativeNumbersFrom(stringOfNumbers){
+  return stringOfNumbers.match(/(-\d)/g).toString(',')
 }

@@ -1,5 +1,5 @@
 /* global test */
-const {equal} = require('assert')
+const {equal,throws} = require('assert')
 const {add} = require('..')
 
 test('string calculator', () => {
@@ -29,5 +29,9 @@ test('string calculator', () => {
 
   test('handles custom delimiters', () => {
     equal(add('//;\n1;2'), 3)
+  })
+
+  test('negative numbers cause exception', () =>{
+    throws(add('-2,4,-1'),/negatives not allowed: -2,-1/)
   })
 })

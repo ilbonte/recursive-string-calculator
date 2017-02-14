@@ -7,7 +7,7 @@ function add (stringOfNumbers) {
   if (containsCustomDelimiter(stringOfNumbers)) {
     const delimiter = extractCustomDelimiterFrom(stringOfNumbers)
     delimiters.push(delimiter)
-    stringOfNumbers = stringOfNumbers.substring(4)
+    stringOfNumbers = removeCustomDelimiterHeader(stringOfNumbers)
   }
 
   if(containsNegativeNumbers(stringOfNumbers)){
@@ -69,4 +69,8 @@ function extractNegativeNumbersFrom(stringOfNumbers){
 
 function numbesLowerThan(expected) {
   return number => parseInt(number) < expected
+}
+
+function removeCustomDelimiterHeader(stringOfNumbers){
+  return stringOfNumbers.substring(4)
 }
